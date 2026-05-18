@@ -1,7 +1,7 @@
 [project]
 name = "production-regime-transition-digital-twin"
 version = "0.1.0"
-description = "Add your description here"
+description = "Production regime transition digital twin prototype"
 requires-python = ">=3.12"
 dependencies = [
     "joblib>=1.5.3",
@@ -16,3 +16,10 @@ dependencies = [
     "simpy>=4.1.1",
     "streamlit>=1.57.0",
 ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
