@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+  body {
+    margin: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background: #FAFAFA;
+    font-family: "DM Sans", sans-serif;
+  }
+  .scene {
+    position: absolute;
+    top: 0; left: 0;
+    width: 1920px; height: 1080px;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  #scene1 { z-index: 1; background: #FAFAFA; }
+  #scene2 { z-index: 2; background: #FAFAFA; opacity: 0; }
+  #scene3 { z-index: 3; background: #FAFAFA; opacity: 0; }
+  #scene4 { z-index: 4; background: #FAFAFA; opacity: 0; }
+  #scene5 { z-index: 5; background: #FAFAFA; opacity: 0; }
+
+  /* ---------- Scene 1 ---------- */
+  .s1-content {
+    display: flex; flex-direction: column; justify-content: center;
+    width: 100%; height: 100%;
+    padding: 140px 180px;
+    gap: 16px; box-sizing: border-box;
+  }
+  .s1-label {
+    font-family: "DM Mono", monospace;
+    font-size: 18px; font-weight: 400;
+    color: #64748B; letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .s1-title {
+    font-family: "DM Serif Display", serif;
+    font-size: 110px; font-weight: 400;
+    color: #171717; line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  .s1-stack {
+    font-family: "DM Mono", monospace;
+    font-size: 20px; font-weight: 400;
+    color: #64748B; margin-top: 24px;
+  }
+  .s1-rule {
+    width: 120px; height: 2px;
+    background: #2563EB; margin: 8px 0;
+    transform-origin: left center;
+  }
+  .s1-grid-line {
+    position: absolute;
+    background: #E2E8F0;
+    opacity: 0.5;
+  }
+
+  /* ---------- Scene 2 ---------- */
+  .s2-content {
+    display: flex; flex-direction: column;
+    width: 100%; height: 100%;
+    padding: 120px 160px;
+    gap: 40px; box-sizing: border-box;
+  }
+  .s2-heading {
+    font-family: "DM Serif Display", serif;
+    font-size: 72px; font-weight: 400;
+    color: #171717;
+  }
+  .s2-cards {
+    display: flex; gap: 28px; flex: 1;
+    align-items: stretch;
+  }
+  .s2-card {
+    flex: 1;
+    background: #F1F5F9;
+    border-radius: 4px;
+    padding: 40px 36px;
+    display: flex; flex-direction: column;
+    gap: 12px; box-sizing: border-box;
+  }
+  .s2-card-num {
+    font-family: "DM Mono", monospace;
+    font-size: 16px; color: #2563EB;
+    font-weight: 500;
+  }
+  .s2-card-title {
+    font-family: "DM Serif Display", serif;
+    font-size: 36px; font-weight: 400;
+    color: #171717;
+  }
+  .s2-card-desc {
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px; font-weight: 400;
+    color: #64748B; line-height: 1.5;
+  }
+
+  /* ---------- Scene 3 ---------- */
+  .s3-content {
+    display: flex; flex-direction: column;
+    width: 100%; height: 100%;
+    padding: 120px 160px;
+    gap: 40px; box-sizing: border-box;
+  }
+  .s3-heading {
+    font-family: "DM Serif Display", serif;
+    font-size: 72px; font-weight: 400;
+    color: #171717;
+  }
+  .s3-split {
+    display: flex; gap: 80px; flex: 1;
+  }
+  .s3-left {
+    flex: 1;
+    display: flex; flex-direction: column; gap: 32px;
+  }
+  .s3-right {
+    flex: 1;
+    display: flex; flex-direction: column; gap: 28px;
+  }
+  .s3-flow {
+    font-family: "DM Mono", monospace;
+    font-size: 28px; color: #2563EB;
+    letter-spacing: 0.04em;
+  }
+  .s3-machine {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 12px;
+  }
+  .s3-machine-box {
+    width: 160px; height: 72px;
+    border: 2px solid #CBD5E1;
+    background: #F8FAFC;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "DM Sans", sans-serif;
+    font-size: 24px; font-weight: 600;
+    color: #171717; border-radius: 4px;
+  }
+  .s3-arrow {
+    font-family: "DM Mono", monospace;
+    font-size: 32px; color: #94A3B8;
+  }
+  .s3-regime-box {
+    background: #F1F5F9;
+    border-left: 3px solid #2563EB;
+    padding: 28px 32px;
+    border-radius: 0 4px 4px 0;
+  }
+  .s3-regime-name {
+    font-family: "DM Sans", sans-serif;
+    font-size: 22px; font-weight: 600;
+    color: #171717; margin-bottom: 8px;
+  }
+  .s3-regime-desc {
+    font-family: "DM Sans", sans-serif;
+    font-size: 18px; color: #64748B;
+    line-height: 1.6;
+  }
+  .s3-stats {
+    display: flex; gap: 64px; margin-top: 12px;
+  }
+  .s3-stat-val {
+    font-family: "DM Sans", sans-serif;
+    font-size: 64px; font-weight: 700;
+    color: #2563EB;
+    font-variant-numeric: tabular-nums;
+  }
+  .s3-stat-label {
+    font-family: "DM Mono", monospace;
+    font-size: 16px; color: #64748B;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+
+  /* ---------- Scene 4 ---------- */
+  .s4-content {
+    display: flex; flex-direction: column;
+    width: 100%; height: 100%;
+    padding: 120px 160px;
+    gap: 40px; box-sizing: border-box;
+  }
+  .s4-heading {
+    font-family: "DM Serif Display", serif;
+    font-size: 72px; font-weight: 400;
+    color: #171717;
+  }
+  .s4-split {
+    display: flex; gap: 80px; flex: 1;
+  }
+  .s4-col {
+    flex: 1;
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .s4-pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: "DM Mono", monospace;
+    font-size: 16px; color: #2563EB;
+    background: #EFF6FF;
+    padding: 8px 18px; border-radius: 3px;
+  }
+  .s4-desc {
+    font-family: "DM Sans", sans-serif;
+    font-size: 22px; color: #334155;
+    line-height: 1.6;
+  }
+  .s4-compare {
+    display: flex; gap: 48px; margin-top: 16px;
+  }
+  .s4-compare-block {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .s4-compare-val {
+    font-family: "DM Sans", sans-serif;
+    font-size: 80px; font-weight: 700;
+    color: #171717;
+    font-variant-numeric: tabular-nums;
+  }
+  .s4-compare-label {
+    font-family: "DM Mono", monospace;
+    font-size: 16px; color: #64748B;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .s4-delta {
+    font-family: "DM Sans", sans-serif;
+    font-size: 28px; font-weight: 600;
+    color: #2563EB;
+  }
+
+  /* ---------- Scene 5 ---------- */
+  .s5-content {
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    width: 100%; height: 100%;
+    padding: 140px 180px;
+    gap: 28px; box-sizing: border-box;
+    text-align: center;
+  }
+  .s5-heading {
+    font-family: "DM Serif Display", serif;
+    font-size: 80px; font-weight: 400;
+    color: #171717;
+  }
+  .s5-stack {
+    font-family: "DM Mono", monospace;
+    font-size: 22px; color: #64748B;
+  }
+  .s5-url {
+    font-family: "DM Mono", monospace;
+    font-size: 26px; color: #2563EB;
+    margin-top: 8px;
+  }
+  .s5-closing {
+    font-family: "DM Sans", sans-serif;
+    font-size: 28px; font-weight: 400;
+    color: #475569; margin-top: 48px;
+    font-style: italic;
+  }
+  .s5-rule {
+    width: 80px; height: 2px;
+    background: #CBD5E1; margin: 0 auto;
+  }
+
+  /* ---------- Decoratives ---------- */
+  .grid-v { position: absolute; top: 0; width: 1px; height: 100%; background: #E2E8F0; opacity: 0.4; }
+  .grid-h { position: absolute; left: 0; height: 1px; width: 100%; background: #E2E8F0; opacity: 0.4; }
+</style>
+</head>
+<body>
+
+<div id="root"
+     data-composition-id="main"
+     data-width="1920"
+     data-height="1080"
+     data-start="0"
+     data-duration="42">
+
+  <!-- ================================================================ -->
+  <!-- SCENE 1 — Title                                                  -->
+  <!-- ================================================================ -->
+  <div id="scene1" class="scene">
+    <div class="grid-v" style="left:180px;"></div>
+    <div class="grid-v" style="left:1740px;"></div>
+    <div class="grid-h" style="top:140px;"></div>
+    <div class="grid-h" style="top:940px;"></div>
+
+    <div class="s1-content">
+      <div class="s1-label">PRODUCTION PLANNING PROTOTYPE</div>
+      <div class="s1-rule"></div>
+      <div class="s1-title">Production Regime<br>Transition Digital Twin</div>
+      <div class="s1-stack">SimPy &nbsp;·&nbsp; ruptures &nbsp;·&nbsp; scikit‑learn &nbsp;·&nbsp; OR‑Tools &nbsp;·&nbsp; Streamlit</div>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- SCENE 2 — 4 Pillars                                              -->
+  <!-- ================================================================ -->
+  <div id="scene2" class="scene">
+    <div class="s2-content">
+      <div class="s2-heading">4 Connected Ideas</div>
+      <div class="s2-cards">
+        <div class="s2-card">
+          <div class="s2-card-num">01</div>
+          <div class="s2-card-title">Simulation</div>
+          <div class="s2-card-desc">SimPy discrete-event engine. 3 machines in series with stochastic failures and defects.</div>
+        </div>
+        <div class="s2-card">
+          <div class="s2-card-num">02</div>
+          <div class="s2-card-title">Detection</div>
+          <div class="s2-card-desc">ruptures.Pelt finds regime change-points. RandomForest classifies operational windows.</div>
+        </div>
+        <div class="s2-card">
+          <div class="s2-card-num">03</div>
+          <div class="s2-card-title">Scheduling</div>
+          <div class="s2-card-desc">OR‑Tools CP‑SAT job‑shop solver. Priorities adapt to the estimated system state.</div>
+        </div>
+        <div class="s2-card">
+          <div class="s2-card-num">04</div>
+          <div class="s2-card-title">Traceability</div>
+          <div class="s2-card-desc">MLflow tracks every run. Streamlit dashboard visualises the full pipeline.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- SCENE 3 — Production Line                                        -->
+  <!-- ================================================================ -->
+  <div id="scene3" class="scene">
+    <div class="grid-h" style="top:120px;"></div>
+
+    <div class="s3-content">
+      <div class="s3-heading">Production Line Simulation</div>
+      <div class="s3-split">
+        <div class="s3-left">
+          <div class="s3-flow">Job flow</div>
+          <div class="s3-machine">
+            <div class="s3-machine-box">M1</div>
+            <div class="s3-arrow">→</div>
+            <div class="s3-machine-box">M2</div>
+            <div class="s3-arrow">→</div>
+            <div class="s3-machine-box">M3</div>
+          </div>
+          <div class="s3-stats">
+            <div>
+              <div class="s3-stat-val">200+</div>
+              <div class="s3-stat-label">Jobs</div>
+            </div>
+            <div>
+              <div class="s3-stat-val">500+</div>
+              <div class="s3-stat-label">Events</div>
+            </div>
+            <div>
+              <div class="s3-stat-val">83%</div>
+              <div class="s3-stat-label">Accuracy</div>
+            </div>
+          </div>
+        </div>
+        <div class="s3-right">
+          <div class="s3-regime-box">
+            <div class="s3-regime-name">Nominal regime</div>
+            <div class="s3-regime-desc">Stable cycle times, low defect rate, high machine availability.</div>
+          </div>
+          <div class="s3-regime-box" style="border-left-color: #EF4444;">
+            <div class="s3-regime-name">Degraded regime</div>
+            <div class="s3-regime-desc">Slowdown, more defects, frequent failures, growing queues.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- SCENE 4 — Detection & Scheduling                                 -->
+  <!-- ================================================================ -->
+  <div id="scene4" class="scene">
+    <div class="s4-content">
+      <div class="s4-heading">Detection &amp; Scheduling</div>
+      <div class="s4-split">
+        <div class="s4-col">
+          <div class="s4-pill s4-pill-left">REGIME DETECTION</div>
+          <div class="s4-desc s4-desc-left-1">
+            <strong>ruptures.Pelt</strong> locates change‑points in operational signals — queue length, processing time, defect rate.
+          </div>
+          <div class="s4-desc s4-desc-left-2">
+            <strong>RandomForest</strong> classifies each time‑window as nominal or degraded with 83&thinsp;%+ accuracy.
+          </div>
+        </div>
+        <div class="s4-col">
+          <div class="s4-pill s4-pill-right">SCHEDULING ADAPTATION</div>
+          <div class="s4-desc s4-desc-right">
+            <strong>OR‑Tools CP‑SAT</strong> solves the job‑shop problem. In degraded mode, processing times scale up and priorities shift.
+          </div>
+          <div class="s4-compare">
+            <div class="s4-compare-block">
+              <div class="s4-compare-label">Nominal makespan</div>
+              <div class="s4-compare-val">64</div>
+            </div>
+            <div class="s4-compare-block">
+              <div class="s4-compare-label">Degraded makespan</div>
+              <div class="s4-compare-val">84</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================ -->
+  <!-- SCENE 5 — Dashboard & Close                                      -->
+  <!-- ================================================================ -->
+  <div id="scene5" class="scene">
+    <div class="s5-content">
+      <div class="s5-heading">Interactive Dashboard</div>
+      <div class="s5-stack">Streamlit &nbsp;·&nbsp; Altair &nbsp;·&nbsp; MLflow</div>
+      <div class="s5-rule"></div>
+      <div class="s5-url">github.com/jeaneigsi/digital‑twin</div>
+      <div class="s5-closing">Production planning under uncertainty</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ================================================================ -->
+<!-- TIMELINE                                                          -->
+<!-- ================================================================ -->
+<script>
+window.__timelines = window.__timelines || {};
+var tl = gsap.timeline({ paused: true });
+
+// ── SCENE 1 (0 → 7.5s) ──────────────────────────────────────────────
+tl.from("#scene1 .grid-v",   { opacity: 0, duration: 0.8, ease: "sine.inOut" }, 0.2);
+tl.from("#scene1 .grid-h",   { opacity: 0, duration: 0.8, ease: "sine.inOut" }, 0.3);
+tl.fromTo("#scene1 .s1-rule",{ scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 0.3);
+tl.fromTo("#scene1 .s1-label",{ y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.5);
+tl.fromTo("#scene1 .s1-title",{ y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "expo.out" }, 0.8);
+tl.fromTo("#scene1 .s1-stack",{ y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 1.4);
+
+// Ambient: subtle rule pulse
+tl.to("#scene1 .s1-rule", { scaleX: 1.08, duration: 3, ease: "sine.inOut", yoyo: true, repeat: 3 }, 1.8);
+
+// Transition scene1→scene2: blur crossfade at T=7.2
+tl.to("#scene1",   { filter: "blur(10px)", scale: 1.03, opacity: 0, duration: 0.5, ease: "power2.inOut" }, 7.2);
+tl.fromTo("#scene2",{ filter: "blur(10px)", scale: 0.97, opacity: 0 },
+                    { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.5, ease: "power2.inOut" }, 7.4);
+
+// ── SCENE 2 (7.5 → 15.5s) ───────────────────────────────────────────
+tl.fromTo("#scene2 .s2-heading",{ y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, 8.0);
+tl.fromTo("#scene2 .s2-card:nth-child(1)",{ y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 8.3);
+tl.fromTo("#scene2 .s2-card:nth-child(2)",{ y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 8.6);
+tl.fromTo("#scene2 .s2-card:nth-child(3)",{ y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 8.9);
+tl.fromTo("#scene2 .s2-card:nth-child(4)",{ y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 9.2);
+
+// Transition scene2→scene3 at T=15.2
+tl.to("#scene2",   { filter: "blur(10px)", scale: 1.03, opacity: 0, duration: 0.5, ease: "power2.inOut" }, 15.2);
+tl.fromTo("#scene3",{ filter: "blur(10px)", scale: 0.97, opacity: 0 },
+                    { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.5, ease: "power2.inOut" }, 15.4);
+
+// ── SCENE 3 (15.5 → 24.5s) ──────────────────────────────────────────
+tl.fromTo("#scene3 .grid-h",{ opacity: 0 }, { opacity: 0.4, duration: 0.6, ease: "sine.inOut" }, 16.0);
+tl.fromTo("#scene3 .s3-heading",{ x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, 16.0);
+tl.fromTo("#scene3 .s3-flow",{ opacity: 0 }, { opacity: 1, duration: 0.4, ease: "sine.inOut" }, 16.3);
+tl.fromTo("#scene3 .s3-machine-box",{ y: 16, opacity: 0, stagger: 0.12 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.4)" }, 16.5);
+tl.fromTo("#scene3 .s3-arrow",{ scale: 0, opacity: 0, stagger: 0.10 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, 16.6);
+
+tl.fromTo("#scene3 .s3-regime-box:nth-of-type(1)",{ x: 20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 17.2);
+tl.fromTo("#scene3 .s3-regime-box:nth-of-type(2)",{ x: 20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 17.5);
+
+tl.fromTo("#scene3 .s3-stat-val",{ scale: 0.8, opacity: 0, stagger: 0.10 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.5)" }, 18.0);
+tl.fromTo("#scene3 .s3-stat-label",{ y: 8, opacity: 0, stagger: 0.10 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 18.1);
+
+// Transition scene3→scene4 at T=24.2
+tl.to("#scene3",   { filter: "blur(10px)", scale: 1.03, opacity: 0, duration: 0.5, ease: "power2.inOut" }, 24.2);
+tl.fromTo("#scene4",{ filter: "blur(10px)", scale: 0.97, opacity: 0 },
+                    { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.5, ease: "power2.inOut" }, 24.4);
+
+// ── SCENE 4 (24.5 → 32.5s) ──────────────────────────────────────────
+tl.fromTo("#scene4 .s4-heading",{ x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, 25.0);
+
+tl.fromTo("#scene4 .s4-pill-left",{ scaleX: 0.9, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.4, ease: "power2.out" }, 25.3);
+tl.fromTo("#scene4 .s4-desc-left-1",{ y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 25.5);
+tl.fromTo("#scene4 .s4-desc-left-2",{ y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 25.8);
+
+tl.fromTo("#scene4 .s4-pill-right",{ scaleX: 0.9, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.4, ease: "power2.out" }, 26.2);
+tl.fromTo("#scene4 .s4-desc-right",{ y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 26.4);
+
+tl.fromTo("#scene4 .s4-compare-val",{ scale: 0.6, opacity: 0, stagger: 0.18 }, { scale: 1, opacity: 1, duration: 0.5, ease: "elastic.out(1, 0.4)" }, 27.0);
+tl.fromTo("#scene4 .s4-compare-label",{ y: 6, opacity: 0, stagger: 0.18 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 27.1);
+
+// Transition scene4→scene5 at T=32.2
+tl.to("#scene4",   { filter: "blur(10px)", scale: 1.03, opacity: 0, duration: 0.5, ease: "power2.inOut" }, 32.2);
+tl.fromTo("#scene5",{ filter: "blur(10px)", scale: 0.97, opacity: 0 },
+                    { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.5, ease: "power2.inOut" }, 32.4);
+
+// ── SCENE 5 (32.5 → 42s) ────────────────────────────────────────────
+tl.fromTo("#scene5 .s5-heading",{ y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, 33.0);
+tl.fromTo("#scene5 .s5-stack",{ y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 33.4);
+tl.fromTo("#scene5 .s5-rule",{ scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 33.6);
+tl.fromTo("#scene5 .s5-url",{ y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 34.0);
+tl.fromTo("#scene5 .s5-closing",{ y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "sine.inOut" }, 34.5);
+
+// Final fade (allowed — last scene)
+tl.to("#scene5", { opacity: 0, duration: 0.8, ease: "power2.in" }, 40.5);
+tl.set("#scene5", { opacity: 0, visibility: "hidden" }, 41.5);
+
+window.__timelines["main"] = tl;
+</script>
+
+</body>
+</html>
