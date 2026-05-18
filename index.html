@@ -25,6 +25,19 @@
   #scene4 { z-index: 4; background: #FAFAFA; opacity: 0; }
   #scene5 { z-index: 5; background: #FAFAFA; opacity: 0; }
 
+  /* ---------- Image treatment ---------- */
+  .img-wrap {
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
+  }
+  .img-wrap img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   /* ---------- Scene 1 ---------- */
   .s1-content {
     display: flex; flex-direction: column; justify-content: center;
@@ -53,11 +66,6 @@
     width: 120px; height: 2px;
     background: #2563EB; margin: 8px 0;
     transform-origin: left center;
-  }
-  .s1-grid-line {
-    position: absolute;
-    background: #E2E8F0;
-    opacity: 0.5;
   }
 
   /* ---------- Scene 2 ---------- */
@@ -100,148 +108,156 @@
     color: #64748B; line-height: 1.5;
   }
 
-  /* ---------- Scene 3 ---------- */
+  /* ---------- Scene 3 — Simulation + screenshot ---------- */
   .s3-content {
     display: flex; flex-direction: column;
     width: 100%; height: 100%;
-    padding: 120px 160px;
-    gap: 40px; box-sizing: border-box;
+    padding: 100px 160px 100px 160px;
+    gap: 36px; box-sizing: border-box;
   }
   .s3-heading {
     font-family: "DM Serif Display", serif;
-    font-size: 72px; font-weight: 400;
+    font-size: 68px; font-weight: 400;
     color: #171717;
   }
   .s3-split {
-    display: flex; gap: 80px; flex: 1;
+    display: flex; gap: 60px; flex: 1;
   }
   .s3-left {
-    flex: 1;
-    display: flex; flex-direction: column; gap: 32px;
+    flex: 1.15;
+    display: flex; align-items: center;
+  }
+  .s3-left .img-wrap {
+    width: 100%;
+    height: 420px;
   }
   .s3-right {
-    flex: 1;
+    flex: 0.85;
     display: flex; flex-direction: column; gap: 28px;
-  }
-  .s3-flow {
-    font-family: "DM Mono", monospace;
-    font-size: 28px; color: #2563EB;
-    letter-spacing: 0.04em;
+    justify-content: center;
   }
   .s3-machine {
-    display: flex; align-items: center; gap: 16px;
-    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 12px;
   }
   .s3-machine-box {
-    width: 160px; height: 72px;
+    width: 120px; height: 60px;
     border: 2px solid #CBD5E1;
     background: #F8FAFC;
     display: flex; align-items: center; justify-content: center;
     font-family: "DM Sans", sans-serif;
-    font-size: 24px; font-weight: 600;
+    font-size: 22px; font-weight: 600;
     color: #171717; border-radius: 4px;
   }
   .s3-arrow {
     font-family: "DM Mono", monospace;
-    font-size: 32px; color: #94A3B8;
-  }
-  .s3-regime-box {
-    background: #F1F5F9;
-    border-left: 3px solid #2563EB;
-    padding: 28px 32px;
-    border-radius: 0 4px 4px 0;
-  }
-  .s3-regime-name {
-    font-family: "DM Sans", sans-serif;
-    font-size: 22px; font-weight: 600;
-    color: #171717; margin-bottom: 8px;
-  }
-  .s3-regime-desc {
-    font-family: "DM Sans", sans-serif;
-    font-size: 18px; color: #64748B;
-    line-height: 1.6;
+    font-size: 28px; color: #94A3B8;
   }
   .s3-stats {
-    display: flex; gap: 64px; margin-top: 12px;
+    display: flex; gap: 48px;
   }
   .s3-stat-val {
     font-family: "DM Sans", sans-serif;
-    font-size: 64px; font-weight: 700;
+    font-size: 56px; font-weight: 700;
     color: #2563EB;
     font-variant-numeric: tabular-nums;
   }
   .s3-stat-label {
     font-family: "DM Mono", monospace;
-    font-size: 16px; color: #64748B;
+    font-size: 14px; color: #64748B;
     text-transform: uppercase; letter-spacing: 0.06em;
   }
+  .s3-caption {
+    font-family: "DM Mono", monospace;
+    font-size: 15px; color: #94A3B8;
+    letter-spacing: 0.04em;
+  }
 
-  /* ---------- Scene 4 ---------- */
+  /* ---------- Scene 4 — Detection + Gantt screenshot ---------- */
   .s4-content {
     display: flex; flex-direction: column;
     width: 100%; height: 100%;
-    padding: 120px 160px;
-    gap: 40px; box-sizing: border-box;
+    padding: 90px 160px 90px 160px;
+    gap: 28px; box-sizing: border-box;
   }
   .s4-heading {
     font-family: "DM Serif Display", serif;
-    font-size: 72px; font-weight: 400;
+    font-size: 68px; font-weight: 400;
     color: #171717;
   }
-  .s4-split {
-    display: flex; gap: 80px; flex: 1;
+  .s4-top-row {
+    display: flex; gap: 60px;
   }
   .s4-col {
     flex: 1;
-    display: flex; flex-direction: column; gap: 24px;
+    display: flex; flex-direction: column; gap: 14px;
   }
   .s4-pill {
     display: inline-flex; align-items: center; gap: 10px;
     font-family: "DM Mono", monospace;
-    font-size: 16px; color: #2563EB;
+    font-size: 15px; color: #2563EB;
     background: #EFF6FF;
-    padding: 8px 18px; border-radius: 3px;
+    padding: 6px 16px; border-radius: 3px;
+    width: fit-content;
   }
   .s4-desc {
     font-family: "DM Sans", sans-serif;
-    font-size: 22px; color: #334155;
-    line-height: 1.6;
+    font-size: 20px; color: #334155;
+    line-height: 1.5;
   }
-  .s4-compare {
-    display: flex; gap: 48px; margin-top: 16px;
+  .s4-gantt-wrap {
+    flex: 1;
+    display: flex; align-items: center;
   }
-  .s4-compare-block {
-    display: flex; flex-direction: column; gap: 8px;
+  .s4-gantt-wrap .img-wrap {
+    width: 100%;
+    height: 340px;
+    position: relative;
   }
-  .s4-compare-val {
+  .s4-overlay {
+    position: absolute;
+    bottom: 24px; left: 48px;
+    display: flex; gap: 60px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    padding: 20px 36px;
+    border-radius: 6px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+  .s4-overlay-block {
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .s4-overlay-val {
     font-family: "DM Sans", sans-serif;
-    font-size: 80px; font-weight: 700;
+    font-size: 44px; font-weight: 700;
     color: #171717;
     font-variant-numeric: tabular-nums;
   }
-  .s4-compare-label {
+  .s4-overlay-label {
     font-family: "DM Mono", monospace;
-    font-size: 16px; color: #64748B;
+    font-size: 13px; color: #64748B;
     text-transform: uppercase; letter-spacing: 0.06em;
   }
-  .s4-delta {
-    font-family: "DM Sans", sans-serif;
-    font-size: 28px; font-weight: 600;
-    color: #2563EB;
-  }
 
-  /* ---------- Scene 5 ---------- */
+  /* ---------- Scene 5 — Dashboard + close ---------- */
   .s5-content {
     display: flex; flex-direction: column;
     justify-content: center; align-items: center;
     width: 100%; height: 100%;
-    padding: 140px 180px;
-    gap: 28px; box-sizing: border-box;
+    padding: 100px 240px;
+    gap: 24px; box-sizing: border-box;
     text-align: center;
+  }
+  .s5-screenshot-wrap {
+    width: 820px;
+    margin-bottom: 16px;
+  }
+  .s5-screenshot-wrap .img-wrap {
+    width: 100%;
+    height: 280px;
   }
   .s5-heading {
     font-family: "DM Serif Display", serif;
-    font-size: 80px; font-weight: 400;
+    font-size: 64px; font-weight: 400;
     color: #171717;
   }
   .s5-stack {
@@ -250,13 +266,12 @@
   }
   .s5-url {
     font-family: "DM Mono", monospace;
-    font-size: 26px; color: #2563EB;
-    margin-top: 8px;
+    font-size: 24px; color: #2563EB;
   }
   .s5-closing {
     font-family: "DM Sans", sans-serif;
-    font-size: 28px; font-weight: 400;
-    color: #475569; margin-top: 48px;
+    font-size: 26px; font-weight: 400;
+    color: #475569; margin-top: 28px;
     font-style: italic;
   }
   .s5-rule {
@@ -327,16 +342,21 @@
   </div>
 
   <!-- ================================================================ -->
-  <!-- SCENE 3 — Production Line                                        -->
+  <!-- SCENE 3 — Production Line + indicators screenshot                 -->
   <!-- ================================================================ -->
   <div id="scene3" class="scene">
-    <div class="grid-h" style="top:120px;"></div>
+    <div class="grid-h" style="top:100px;"></div>
 
     <div class="s3-content">
       <div class="s3-heading">Production Line Simulation</div>
       <div class="s3-split">
         <div class="s3-left">
-          <div class="s3-flow">Job flow</div>
+          <div class="img-wrap s3-img">
+            <img src="asset/ScreenShot_20260518013036.jpeg" alt="Operational indicators" />
+          </div>
+        </div>
+        <div class="s3-right">
+          <div class="s3-caption">JOB FLOW</div>
           <div class="s3-machine">
             <div class="s3-machine-box">M1</div>
             <div class="s3-arrow">→</div>
@@ -358,50 +378,46 @@
               <div class="s3-stat-label">Accuracy</div>
             </div>
           </div>
-        </div>
-        <div class="s3-right">
-          <div class="s3-regime-box">
-            <div class="s3-regime-name">Nominal regime</div>
-            <div class="s3-regime-desc">Stable cycle times, low defect rate, high machine availability.</div>
-          </div>
-          <div class="s3-regime-box" style="border-left-color: #EF4444;">
-            <div class="s3-regime-name">Degraded regime</div>
-            <div class="s3-regime-desc">Slowdown, more defects, frequent failures, growing queues.</div>
-          </div>
+          <div class="s3-caption">Nominal → Degraded → Recovery</div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- ================================================================ -->
-  <!-- SCENE 4 — Detection & Scheduling                                 -->
+  <!-- SCENE 4 — Detection + Gantt screenshot                            -->
   <!-- ================================================================ -->
   <div id="scene4" class="scene">
     <div class="s4-content">
-      <div class="s4-heading">Detection &amp; Scheduling</div>
-      <div class="s4-split">
+      <div class="s4-heading">Detection &amp; Scheduling Adaptation</div>
+      <div class="s4-top-row">
         <div class="s4-col">
           <div class="s4-pill s4-pill-left">REGIME DETECTION</div>
           <div class="s4-desc s4-desc-left-1">
-            <strong>ruptures.Pelt</strong> locates change‑points in operational signals — queue length, processing time, defect rate.
+            <strong>ruptures.Pelt</strong> locates change‑points in operational signals.
           </div>
           <div class="s4-desc s4-desc-left-2">
-            <strong>RandomForest</strong> classifies each time‑window as nominal or degraded with 83&thinsp;%+ accuracy.
+            <strong>RandomForest</strong> classifies windows as nominal or degraded — 83&thinsp;%+ accuracy.
           </div>
         </div>
         <div class="s4-col">
-          <div class="s4-pill s4-pill-right">SCHEDULING ADAPTATION</div>
+          <div class="s4-pill s4-pill-right">SCHEDULING</div>
           <div class="s4-desc s4-desc-right">
-            <strong>OR‑Tools CP‑SAT</strong> solves the job‑shop problem. In degraded mode, processing times scale up and priorities shift.
+            <strong>OR‑Tools CP‑SAT</strong> job‑shop solver. Processing times scale up in degraded mode.
           </div>
-          <div class="s4-compare">
-            <div class="s4-compare-block">
-              <div class="s4-compare-label">Nominal makespan</div>
-              <div class="s4-compare-val">64</div>
+        </div>
+      </div>
+      <div class="s4-gantt-wrap">
+        <div class="img-wrap s4-img">
+          <img src="asset/ScreenShot_20260518013051.jpeg" alt="Scheduling comparison" />
+          <div class="s4-overlay s4-overlay-el">
+            <div class="s4-overlay-block">
+              <div class="s4-overlay-label">Nominal makespan</div>
+              <div class="s4-overlay-val">64</div>
             </div>
-            <div class="s4-compare-block">
-              <div class="s4-compare-label">Degraded makespan</div>
-              <div class="s4-compare-val">84</div>
+            <div class="s4-overlay-block">
+              <div class="s4-overlay-label">Degraded makespan</div>
+              <div class="s4-overlay-val">84</div>
             </div>
           </div>
         </div>
@@ -410,10 +426,15 @@
   </div>
 
   <!-- ================================================================ -->
-  <!-- SCENE 5 — Dashboard & Close                                      -->
+  <!-- SCENE 5 — Dashboard screenshot + close                            -->
   <!-- ================================================================ -->
   <div id="scene5" class="scene">
     <div class="s5-content">
+      <div class="s5-screenshot-wrap">
+        <div class="img-wrap s5-img">
+          <img src="asset/ScreenShot_20260518013013.jpeg" alt="Dashboard KPIs" />
+        </div>
+      </div>
       <div class="s5-heading">Interactive Dashboard</div>
       <div class="s5-stack">Streamlit &nbsp;·&nbsp; Altair &nbsp;·&nbsp; MLflow</div>
       <div class="s5-rule"></div>
@@ -439,10 +460,9 @@ tl.fromTo("#scene1 .s1-label",{ y: 12, opacity: 0 }, { y: 0, opacity: 1, duratio
 tl.fromTo("#scene1 .s1-title",{ y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "expo.out" }, 0.8);
 tl.fromTo("#scene1 .s1-stack",{ y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 1.4);
 
-// Ambient: subtle rule pulse
 tl.to("#scene1 .s1-rule", { scaleX: 1.08, duration: 3, ease: "sine.inOut", yoyo: true, repeat: 3 }, 1.8);
 
-// Transition scene1→scene2: blur crossfade at T=7.2
+// Transition 1→2
 tl.to("#scene1",   { filter: "blur(10px)", scale: 1.03, opacity: 0, duration: 0.5, ease: "power2.inOut" }, 7.2);
 tl.fromTo("#scene2",{ filter: "blur(10px)", scale: 0.97, opacity: 0 },
                     { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.5, ease: "power2.inOut" }, 7.4);
@@ -454,7 +474,7 @@ tl.fromTo("#scene2 .s2-card:nth-child(2)",{ y: 24, opacity: 0 }, { y: 0, opacity
 tl.fromTo("#scene2 .s2-card:nth-child(3)",{ y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 8.9);
 tl.fromTo("#scene2 .s2-card:nth-child(4)",{ y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 9.2);
 
-// Transition scene2→scene3 at T=15.2
+// Transition 2→3
 tl.to("#scene2",   { filter: "blur(10px)", scale: 1.03, opacity: 0, duration: 0.5, ease: "power2.inOut" }, 15.2);
 tl.fromTo("#scene3",{ filter: "blur(10px)", scale: 0.97, opacity: 0 },
                     { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.5, ease: "power2.inOut" }, 15.4);
@@ -462,17 +482,19 @@ tl.fromTo("#scene3",{ filter: "blur(10px)", scale: 0.97, opacity: 0 },
 // ── SCENE 3 (15.5 → 24.5s) ──────────────────────────────────────────
 tl.fromTo("#scene3 .grid-h",{ opacity: 0 }, { opacity: 0.4, duration: 0.6, ease: "sine.inOut" }, 16.0);
 tl.fromTo("#scene3 .s3-heading",{ x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, 16.0);
-tl.fromTo("#scene3 .s3-flow",{ opacity: 0 }, { opacity: 1, duration: 0.4, ease: "sine.inOut" }, 16.3);
-tl.fromTo("#scene3 .s3-machine-box",{ y: 16, opacity: 0, stagger: 0.12 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.4)" }, 16.5);
-tl.fromTo("#scene3 .s3-arrow",{ scale: 0, opacity: 0, stagger: 0.10 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, 16.6);
 
-tl.fromTo("#scene3 .s3-regime-box:nth-of-type(1)",{ x: 20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 17.2);
-tl.fromTo("#scene3 .s3-regime-box:nth-of-type(2)",{ x: 20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 17.5);
+// Screenshot entrance (parent) + Ken Burns (child)
+tl.fromTo("#scene3 .s3-img",{ x: -20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 16.2);
+tl.fromTo("#scene3 .s3-img img",{ scale: 1.0 }, { scale: 1.06, duration: 8, ease: "sine.inOut" }, 16.2);
 
-tl.fromTo("#scene3 .s3-stat-val",{ scale: 0.8, opacity: 0, stagger: 0.10 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.5)" }, 18.0);
-tl.fromTo("#scene3 .s3-stat-label",{ y: 8, opacity: 0, stagger: 0.10 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 18.1);
+tl.fromTo("#scene3 .s3-caption",{ opacity: 0 }, { opacity: 1, duration: 0.4, ease: "sine.inOut" }, 16.4);
+tl.fromTo("#scene3 .s3-machine-box",{ y: 12, opacity: 0, stagger: 0.10 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.4)" }, 16.6);
+tl.fromTo("#scene3 .s3-arrow",{ scale: 0, opacity: 0, stagger: 0.08 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, 16.7);
 
-// Transition scene3→scene4 at T=24.2
+tl.fromTo("#scene3 .s3-stat-val",{ scale: 0.7, opacity: 0, stagger: 0.10 }, { scale: 1, opacity: 1, duration: 0.4, ease: "elastic.out(1, 0.4)" }, 17.2);
+tl.fromTo("#scene3 .s3-stat-label",{ y: 6, opacity: 0, stagger: 0.10 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 17.3);
+
+// Transition 3→4
 tl.to("#scene3",   { filter: "blur(10px)", scale: 1.03, opacity: 0, duration: 0.5, ease: "power2.inOut" }, 24.2);
 tl.fromTo("#scene4",{ filter: "blur(10px)", scale: 0.97, opacity: 0 },
                     { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.5, ease: "power2.inOut" }, 24.4);
@@ -481,28 +503,36 @@ tl.fromTo("#scene4",{ filter: "blur(10px)", scale: 0.97, opacity: 0 },
 tl.fromTo("#scene4 .s4-heading",{ x: -24, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, 25.0);
 
 tl.fromTo("#scene4 .s4-pill-left",{ scaleX: 0.9, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.4, ease: "power2.out" }, 25.3);
-tl.fromTo("#scene4 .s4-desc-left-1",{ y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 25.5);
-tl.fromTo("#scene4 .s4-desc-left-2",{ y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 25.8);
+tl.fromTo("#scene4 .s4-desc-left-1",{ y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 25.5);
+tl.fromTo("#scene4 .s4-desc-left-2",{ y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 25.7);
 
-tl.fromTo("#scene4 .s4-pill-right",{ scaleX: 0.9, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.4, ease: "power2.out" }, 26.2);
-tl.fromTo("#scene4 .s4-desc-right",{ y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 26.4);
+tl.fromTo("#scene4 .s4-pill-right",{ scaleX: 0.9, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.4, ease: "power2.out" }, 26.0);
+tl.fromTo("#scene4 .s4-desc-right",{ y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 26.2);
 
-tl.fromTo("#scene4 .s4-compare-val",{ scale: 0.6, opacity: 0, stagger: 0.18 }, { scale: 1, opacity: 1, duration: 0.5, ease: "elastic.out(1, 0.4)" }, 27.0);
-tl.fromTo("#scene4 .s4-compare-label",{ y: 6, opacity: 0, stagger: 0.18 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 27.1);
+// Gantt screenshot + Ken Burns
+tl.fromTo("#scene4 .s4-img",{ y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 26.6);
+tl.fromTo("#scene4 .s4-img img",{ scale: 1.0 }, { scale: 1.05, duration: 5.5, ease: "sine.inOut" }, 26.6);
 
-// Transition scene4→scene5 at T=32.2
+// Overlay numbers pop
+tl.fromTo("#scene4 .s4-overlay-el",{ scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.6)" }, 27.4);
+
+// Transition 4→5
 tl.to("#scene4",   { filter: "blur(10px)", scale: 1.03, opacity: 0, duration: 0.5, ease: "power2.inOut" }, 32.2);
 tl.fromTo("#scene5",{ filter: "blur(10px)", scale: 0.97, opacity: 0 },
                     { filter: "blur(0px)", scale: 1, opacity: 1, duration: 0.5, ease: "power2.inOut" }, 32.4);
 
 // ── SCENE 5 (32.5 → 42s) ────────────────────────────────────────────
-tl.fromTo("#scene5 .s5-heading",{ y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, 33.0);
-tl.fromTo("#scene5 .s5-stack",{ y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 33.4);
-tl.fromTo("#scene5 .s5-rule",{ scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 33.6);
-tl.fromTo("#scene5 .s5-url",{ y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 34.0);
-tl.fromTo("#scene5 .s5-closing",{ y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "sine.inOut" }, 34.5);
+// Dashboard screenshot + Ken Burns
+tl.fromTo("#scene5 .s5-img",{ y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 33.0);
+tl.fromTo("#scene5 .s5-img img",{ scale: 1.0 }, { scale: 1.05, duration: 8, ease: "sine.inOut" }, 33.0);
 
-// Final fade (allowed — last scene)
+tl.fromTo("#scene5 .s5-heading",{ y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, 33.4);
+tl.fromTo("#scene5 .s5-stack",{ y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 33.8);
+tl.fromTo("#scene5 .s5-rule",{ scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 34.0);
+tl.fromTo("#scene5 .s5-url",{ y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 34.3);
+tl.fromTo("#scene5 .s5-closing",{ y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "sine.inOut" }, 34.8);
+
+// Final fade
 tl.to("#scene5", { opacity: 0, duration: 0.8, ease: "power2.in" }, 40.5);
 tl.set("#scene5", { opacity: 0, visibility: "hidden" }, 41.5);
 
