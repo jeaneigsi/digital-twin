@@ -12,13 +12,13 @@ detection, scheduling under constraints, and decision traceability.**
 
 ## Dashboard
 
-![Header and KPIs](asset/ScreenShot_20260518013013.jpg)
+![Header and KPIs](asset/ScreenShot_20260518013013.jpeg)
 
-![Operational Indicators and Regime Detection](asset/ScreenShot_20260518013036.jpg)
+![Operational Indicators and Regime Detection](asset/ScreenShot_20260518013036.jpeg)
 
-![Scheduling Adaptation – Gantt charts](asset/ScreenShot_20260518013051.jpg)
+![Scheduling Adaptation – Gantt charts](asset/ScreenShot_20260518013051.jpeg)
 
-![Raw simulation events](asset/ScreenShot_20260518013108.jpg)
+![Raw simulation events](asset/ScreenShot_20260518013108.jpeg)
 
 ---
 
