@@ -1,14 +1,26 @@
 # Production Regime Transition Digital Twin
 
-This project is a small prototype inspired by production planning under uncertainty.
+Prototype inspired by **production planning under uncertainty** — simulating a
+production line with nominal and degraded regimes, detecting regime changes
+from operational indicators, and adapting the schedule via constraint
+programming.
 
-It simulates a production line with nominal and degraded regimes, detects regime
-changes from operational indicators, and adapts a simple production schedule
-using constraint programming.
+The goal is to connect four ideas: **state representation, regime transition
+detection, scheduling under constraints, and decision traceability.**
 
-The goal is not to solve a full industrial problem, but to connect four ideas:
-state representation, regime transition detection, scheduling under constraints,
-and decision traceability.
+---
+
+## Dashboard
+
+![Header and KPIs](asset/ScreenShot_20260518013013.jpg)
+
+![Operational Indicators and Regime Detection](asset/ScreenShot_20260518013036.jpg)
+
+![Scheduling Adaptation – Gantt charts](asset/ScreenShot_20260518013051.jpg)
+
+![Raw simulation events](asset/ScreenShot_20260518013108.jpg)
+
+---
 
 ## Stack
 
@@ -18,7 +30,7 @@ and decision traceability.
 | Regime detection         | ruptures + scikit-learn |
 | Scheduling               | OR-Tools CP-SAT       |
 | Experiment tracking      | MLflow                |
-| Dashboard                | Streamlit             |
+| Dashboard                | Streamlit + Altair    |
 
 ## Quick start
 
