@@ -30,7 +30,7 @@ with st.sidebar:
     nominal_dur = st.slider("Nominal duration", 100, 1000, 500, 50)
     degraded_dur = st.slider("Degraded duration", 100, 1000, 500, 50)
     recovery_dur = st.slider("Recovery duration", 100, 1000, 500, 50)
-    windown_size = st.slider("Feature windown size", 20, 200, 50, 10)
+    window_size = st.slider("Feature window size", 20, 200, 50, 10)
     random_seed = st.number_input("Random seed", 0, 9999, 42)
 
     if st.button("Run Simulation", type="primary"):
@@ -51,7 +51,7 @@ cfg = SimulationConfig(
     regimes=default_config().regimes,
     inter_arrival_time_mean=default_config().inter_arrival_time_mean,
     random_seed=random_seed,
-    windown_size=windown_size,
+    window_size=window_size,
 )
 
 # 1 — Simulation
@@ -62,7 +62,7 @@ with st.spinner("Running discrete-event simulation …"):
     events = line.run(duration=total_time, regime_schedule=schedule)
 
 # 2 — Features
-features = extract_from_events(events, windown_size)
+features = extract_from_events(events, window_size)
 
 # 3 — Regime detection
 detector = RegimeDetector(random_state=random_seed)
@@ -104,7 +104,7 @@ st.divider()
 st.subheader("Operational Indicators Over Time")
 
 plot_df = events.copy()
-plot_df["time_window"] = (plot_df["time"] // windown_size * windown_size).astype(int)
+plot_df["time_window"] = (plot_df["time"] // window_size * window_size).astype(int)
 
 base = alt.Chart(plot_df).mark_line().encode(x=alt.X("time_window:Q", title="Time"))
 

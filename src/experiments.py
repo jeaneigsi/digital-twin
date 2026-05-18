@@ -35,7 +35,7 @@ class ExperimentTracker:
         nominal_duration: float = 500.0,
         degraded_duration: float = 500.0,
         recovery_duration: float = 500.0,
-        windown_size: float = 50.0,
+        window_size: float = 50.0,
     ) -> dict:
         mlflow.set_experiment("production-regime-detection")
 
@@ -44,7 +44,7 @@ class ExperimentTracker:
                 "nominal_duration": nominal_duration,
                 "degraded_duration": degraded_duration,
                 "recovery_duration": recovery_duration,
-                "windown_size": windown_size,
+                "window_size": window_size,
                 "random_seed": config.random_seed,
             })
 
@@ -58,7 +58,7 @@ class ExperimentTracker:
             mlflow.log_metric("total_events", len(events))
 
             # 2. Features
-            extractor = FeatureExtractor(windown_size)
+            extractor = FeatureExtractor(window_size)
             features = extractor.extract(events)
 
             # 3. Regime detection
