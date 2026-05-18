@@ -1,0 +1,18 @@
+[project]
+name = "production-regime-transition-digital-twin"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "joblib>=1.5.3",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.10.9",
+    "mlflow>=3.12.0",
+    "numpy>=2.4.5",
+    "ortools>=9.15.6755",
+    "pandas>=2.3.3",
+    "ruptures>=1.1.10",
+    "scikit-learn>=1.8.0",
+    "simpy>=4.1.1",
+    "streamlit>=1.57.0",
+]
